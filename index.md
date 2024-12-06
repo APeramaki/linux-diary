@@ -1,8 +1,8 @@
 # Week 1
 
-1. Browse this [Linux Command Line Primer](https://www.digitalocean.com/community/tutorials/a-linux-command-line-primer)
+## 1. Browse this [Linux Command Line Primer](https://www.digitalocean.com/community/tutorials/a-linux-command-line-primer)
 	> Done
-2. Describe following commands and concepts:
+## 2. Describe following commands and concepts:
 
 	- man, apropos
 	> man provides way to read program and system manuals. Apropos can be used to search short descriptions of those manual pages for word or regular expression. man can provide very similar functionality with  `-k` or `-K` arguments
@@ -290,9 +290,7 @@
 
 # Week 2
 
-
-
-18. Watch some live coding Twitch streams, select one and answer:
+## 18. Watch some [live coding Twitch streams](https://www.twitch.tv/directory/category/software-and-game-development), select one and answer:
 -	What is the programming language/languages used?
 > Typescript
 - Which programming libraries and frameworks are being used?
@@ -310,7 +308,7 @@
 > ![linux.png](/pictures/linux.png)
 
 
-1.  Study and explain shortly following commands and concepts:
+20.  Study and explain shortly following commands and concepts:
 - zip, unzip
 > Allows packing and compressing files and folders to single .zip -file. Unzip is used to decompress and unpack them.
 - tar
@@ -340,8 +338,8 @@
 - GNU gcc / g++
 > GNU projects c and c++ compilers.
 
-1.  Install build-essential meta package (containing development tools) to your server with: sudo apt install build-essential
-> done
+21.  Install build-essential meta package (containing development tools) to your server with: sudo apt install build-essential
+> Done
 > ```bash
 > usur@VAINAMOINEN:/usr/bin$ sudo apt install build-essential
 > [sudo] password for usur:
@@ -353,18 +351,66 @@
 > 0 upgraded, 0 newly installed, 0 to remove and 141 not upgraded.
 > ```
   
-1.  Get the source code for curses-based (“text-graphics”) worm game nibbles-1.2.tar.gz
+22.  Get the source code for curses-based (“text-graphics”) worm game [nibbles-1.2.tar.gz](https://tl.oamk.fi/cdos/dl/nibbles-1.2.tar.gz)
 - Unpack the source package to a some temporary directory under your home directory
 - Compile the game and try playing it. Note: Ubuntu does not have ncursed development libraries installed by default. Use apt install to install the missing library dependencies: sudo apt install libncurses-dev
+> After installing libncurses-dev and unpacking:
+>
+> ```bash
+> usur@VAINAMOINEN:~/nibbles/nibbles-1.2$ make
+> gcc -O2 -Wall -c -o main.o main.c
+> main.c: In function ‘main’:
+> main.c:54:9: warning: implicit declaration of function ‘memset’ [-Wimplicit-function-declaration]
+>    54 |         memset(grid,0,sizeof(grid));
+>       |         ^~~~~~
+> main.c:11:1: note: include ‘<string.h>’ or provide a declaration of ‘memset’
+>    10 | #include "screen.h"
+>   +++ |+#include <string.h>
+>    11 |
+> screen.c:46:17: note: include ‘<stdlib.h>’ or provide a declaration of ‘exit’
+> # And lots more warings....
+> gcc -O2 -Wall -o nibbles main.o misc.o screen.o -lncurses
+> usur@VAINAMOINEN:~/nibbles/nibbles-1.2$ ls
+> CHANGES  Makefile  README  config.h  main.c  main.o  misc.c  misc.h  misc.o  nibbles  screen.c  screen.h  screen.o
+> usur@VAINAMOINEN:~/nibbles/nibbles-1.2$ ./nibbles
+> You crashed in a wall. Your score was 1.
+> usur@VAINAMOINEN:~/nibbles/nibbles-1.2$
+> ```
 
-1.  Get the source code for another curses-based (“text-graphics”) Tetris game nct-1.4.tar.gz
-- Unpack source package to temporary directory in your home directory.
-- Use source package’s configure script to generate Makefile with installation prefix pointing to your home directory
-- Compile source code and install compiled files
-- Test if game works
-- Remove temporary game directory
+23.    Get the source code for another curses-based (“text-graphics”) Tetris game [nct-1.4.tar.gz](https://tl.oamk.fi/cdos/dl/nct-1.4.tar.gz)
+   - Unpack source package to temporary directory in your home directory.
+   > ```bash
+   > usur@VAINAMOINEN:~$ mkdir tetris
+   > usur@VAINAMOINEN:~$ cd tetris/
+   > usur@VAINAMOINEN:~/tetris$ wget https://tl.oamk.fi/cdos/dl/nct-1.4.tar.gz
+   > --2024-12-06 13:03:45--  https://tl.oamk.fi/cdos/dl/nct-1.4.tar.gz
+   > Resolving tl.oamk.fi (tl.oamk.fi)... 37.27.176.253
+   > Connecting to tl.oamk.fi (tl.oamk.fi)|37.27.176.253|:443... connected.
+   > HTTP request sent, awaiting response... 200 OK
+   > Length: 44562 (44K) [application/x-gzip]
+   > Saving to: ‘nct-1.4.tar.gz’
+   > 
+   > nct-1.4.tar.gz                100%[=================================================>]  43.52K  --.-KB/s    in 0.04s
+   > 
+   > 2024-12-06 13:03:46 (991 KB/s) - ‘nct-1.4.tar.gz’ saved [44562/44562]
+   > 
+   > usur@VAINAMOINEN:~/tetris$ ls
+   > nct-1.4.tar.gz
+   > usur@VAINAMOINEN:~/tetris$ tar -xf archive.tar.gz
+   > tar: archive.tar.gz: Cannot open: No such file or directory
+   > tar: Error is not recoverable: exiting now
+   > usur@VAINAMOINEN:~/tetris$ tar -xf nct-1.4.tar.gz
+   > usur@VAINAMOINEN:~/tetris$ ls
+   > nct-1.4  nct-1.4.tar.gz
+   > usur@VAINAMOINEN:~/tetris$
+   > ```
+   - Use source package’s configure script to generate Makefile with installation prefix pointing to your home directory
+   > 
+   - Compile source code and install compiled files
+   - Test if game works
+   - Remove temporary game directory
 
-1.  Download the file harj_zip_paketti.zip. Zip-package has following hierarchy:
+.  Download the file harj_zip_paketti.zip. Zip-package has following hierarchy:
 
     ```paahakemisto
           hakemisto_a
@@ -377,7 +423,7 @@
           jap-inv3.jpg
           tekstia.txt
 	```
-2.  With the ZIP file:
+1.  With the ZIP file:
 - Unpack package and all subdirectories to a temporary directory in your home directory
 - Create tar archive from unpacked files and directories and name it to a paketti.tar
 - List contents of the paketti.tar. If everything is correct, delete paahakemisto directory and all subdirectories under it. Delete also the harj_zip_paketti.zip file. Don’t delete the paketti.tar -file you just created.
