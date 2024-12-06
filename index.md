@@ -306,10 +306,11 @@
 > Tried. Failed to see much benefit over powershell with commands like that.
 - Use Winscp to move some files between the Windows and Linux hosts
 > I used winSCP to send text file from my windows PC to Raspberry Pi
-> ![linux.png](/linux-diary/linux.png)
+> 
+> ![linux.png](/pictures/linux.png)
 
 
-20. Study and explain shortly following commands and concepts:
+1.  Study and explain shortly following commands and concepts:
 - zip, unzip
 > Allows packing and compressing files and folders to single .zip -file. Unzip is used to decompress and unpack them.
 - tar
@@ -339,7 +340,7 @@
 - GNU gcc / g++
 > GNU projects c and c++ compilers.
 
-21. Install build-essential meta package (containing development tools) to your server with: sudo apt install build-essential
+1.  Install build-essential meta package (containing development tools) to your server with: sudo apt install build-essential
 > done
 > ```bash
 > usur@VAINAMOINEN:/usr/bin$ sudo apt install build-essential
@@ -352,18 +353,18 @@
 > 0 upgraded, 0 newly installed, 0 to remove and 141 not upgraded.
 > ```
   
-22. Get the source code for curses-based (“text-graphics”) worm game nibbles-1.2.tar.gz
+1.  Get the source code for curses-based (“text-graphics”) worm game nibbles-1.2.tar.gz
 - Unpack the source package to a some temporary directory under your home directory
 - Compile the game and try playing it. Note: Ubuntu does not have ncursed development libraries installed by default. Use apt install to install the missing library dependencies: sudo apt install libncurses-dev
 
-23. Get the source code for another curses-based (“text-graphics”) Tetris game nct-1.4.tar.gz
+1.  Get the source code for another curses-based (“text-graphics”) Tetris game nct-1.4.tar.gz
 - Unpack source package to temporary directory in your home directory.
 - Use source package’s configure script to generate Makefile with installation prefix pointing to your home directory
 - Compile source code and install compiled files
 - Test if game works
 - Remove temporary game directory
 
-24. Download the file harj_zip_paketti.zip. Zip-package has following hierarchy:
+1.  Download the file harj_zip_paketti.zip. Zip-package has following hierarchy:
 
     ```paahakemisto
           hakemisto_a
@@ -376,7 +377,7 @@
           jap-inv3.jpg
           tekstia.txt
 	```
-25. With the ZIP file:
+2.  With the ZIP file:
 - Unpack package and all subdirectories to a temporary directory in your home directory
 - Create tar archive from unpacked files and directories and name it to a paketti.tar
 - List contents of the paketti.tar. If everything is correct, delete paahakemisto directory and all subdirectories under it. Delete also the harj_zip_paketti.zip file. Don’t delete the paketti.tar -file you just created.
@@ -386,7 +387,7 @@
 - Uncompress paketti.tar.gz and compress it again, but now with bzip2. Check the size again. Any difference?
 - Create some gzipped tar archive and use SSH (scp) to copy it to the students.oamk.fi (students.oamk.fi is a Linux server you can use with your Oamk user account credentials)
 
-26. Compile this C source code with gcc and check if it works. helloworld.c source code:
+1.  Compile this C source code with gcc and check if it works. helloworld.c source code:
 ```cpp
 #include <stdio.h>
 int main(void) {
@@ -395,7 +396,7 @@ int main(void) {
 }
 ```
 
-27. Compile this C++ source code with g++ and test it. helloworld.cpp source code:
+1.  Compile this C++ source code with g++ and test it. helloworld.cpp source code:
 
 ```cpp
 #include <iostream>
