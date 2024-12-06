@@ -454,7 +454,7 @@ int main(void) {
 ```
    > ![compile](pictures/26-compile-c.png)
 
-## 26.  Compile this C++ source code with g++ and test it. helloworld.cpp source code:
+## 27.  Compile this C++ source code with g++ and test it. helloworld.cpp source code:
 
 ```cpp
 #include <iostream>
@@ -468,23 +468,50 @@ int main()
    > ![cpp-compile](pictures/27-compile-cpp.png)
 
 
-1.  With previously compiled helloworld C++ binary:
+## 28.  With previously compiled helloworld C++ binary:
 - What are statically linked libraries? Why would you use them?
+   > When using statically linked libraries those are included into the output binary. This eases use and deployment as all the libraries needed for running the program are shipped with executable.
 - Inspect the size of ready binary file (that compiled helloworld binary). Compile it again and use some different output filename. With g++, use now statically linked libraries (with compiler’s -static parameter). Compare the file sizes of statically and dynamically linked binaries
-- Use strace to inspect interiors (system calls) of ls command: “strace ls” and compare the output to a “strace chmod”. Check _exit -values. Why chmod returns 1 and ls returns 0?
-- Why and when Unix administrators and programmers use system call tracing programs and debuggers such as gdb and strace?
+   > ![statically-linked](pictures/28-static.png)
+   > Size difference is quite significant in executable of this size
 
-1.  Solve these service management assignments (Note: most assignments will require root access):
+- Use strace to inspect interiors (system calls) of ls command: “strace ls” and compare the output to a “strace chmod”. Check _exit -values. Why chmod returns 1  and ls returns 0? 
+   > exit values signal program's success or lack thereof to caller. Caller can be shell or other program. By convention, 0 means success, while all else are considered failure. Many manuals list possible exit codes and their meaning.
+   > ls returns one, as it works with just ls command. Chmod fails as it doesn't get arguments it needs to run.
+   > Many shells provide visual cue on success/failure. Note, prompt always shows success/failure of last command. Below is example on mine:
+   > ![exit-code](pictures/28-exit-code.png)
+
+- Why and when Unix administrators and programmers use system call tracing programs and debuggers such as gdb and strace?
+   > `strace` allows user to see what calls program make for operating system. This can be valuable when has problems that might be result of needed dependencies. This can be missing dynamic libraries, permissions or network requests.
+   > `gdb` and similar debugging tools are more suitable when suspected problem is in the program itself. `gdb` execution step by step, visibility to program's variables and investigation of crash reports.
+
+## 29.  Solve these service management assignments (Note: most assignments will require root access):
 - Check what network adapters your Linux host/server has with command: ip addr or ifconfig (ifconfig is not necessary installed by default)
+   > ![network-adapters](pictures/29-network-adapters.png)
+   
 - Listen inbound ICMP traffic in your server with tcpdump command line protocol analyzer and test if you can see the traffic when you ping your server: tcpdump -n -i YOUR_NETWORK_ADAPTER_NAME_HERE icmp
+   > Connected to Raspberry Pi and pinged that.
+   > ![hearing pings](pictures/29-ping-rasp.png)
+   > ![pinging](pictures/29-pinging.png)
+
 - Install apache web server with apt install apache2 and test that you can access your server with a web browser
+   > TODO
+
 - Listen TCP/80 (web) traffic in your server with tcpdump and test if you can see the inbound TCP SYN segments after you try to access your server with a web browser: tcpdump -n -i YOUR_NETWORK_ADAPTER_NAME_HERE tcp port 80
 - Explain what is runlevel?
+  > Runlevels describe how many features are used. They can be used to signal how operating system should be started. In normal operation levels 3 and 5 would be most likely in standard Linux specification. Level 3 would include multi-user with networking and level 5 with addition of display manager.
+  > Lower levels can be used when doing administrative tasks or when solving problems with start up. Similar to Safe mode in Windows.
+
 - Explain what is systemd?
+  > `systemd` is system and service manager for Linux. It has largely replaced older alternatives with more limited features.
+  > It handles many aspects of system. Systemd is responsible for starting services on system startup in correct order to satisfy their dependencies. It allows users to add their own timed services (cron alternative).
+
 - Explain what are the files in /etc/init.d/ directory?
+   > `init.d` is first service that runs on system start up and it is responsible for running other start up services. Files in the folder are start up scripts for those services, such as _apparmour_ (below). All start up scripts have special section that tells `init.d` multitude of things it needs or when it should be run. _Required-Start_ tell what service should be available before starting this service and _Required-Stop_ lists services whose shutdown will 
+   > ![alt text](pictures/29-init.d.png)
 - Study but don’t do: What is runlevel 6? What is the purpose of init 6 command? How would you do the same with systemd?
 
-1.  Test these service management commands with your web server and use web browser to verify the operation whether the server is running or not:
+## 30.  Test these service management commands with your web server and use web browser to verify the operation whether the server is running or not:
 ```sh
 # Somewhat bad or at least old way of some or older distros:
 
@@ -492,18 +519,22 @@ service apache2 stop
 service apache2 start
 service apache2 restart
 ```
+   > Needed sudo for services to start/stop correctly.
+   > ![services](pictures/30-services.png)
 
-31. Test these service management commands with your web server and use web browser to verify the operation whether the server is running or not:
+## 31. Test these service management commands with your web server and use web browser to verify the operation whether the server is running or not:
 
 ```sh
 Generic System V style, also old school:
 
 /etc/init.d/apache2 stop
 /etc/init.d/apache2 start
-/etc/init.d/apache2 restart
+/etc/init.d/apache2 restart 
 ```
+   > Here sudo was also required.
+   > ![init.d](pictures/31-init.d.png)
 
-32. Test these service management commands with your web server and use web browser to verify the operation whether the server is running or not. Try and explain:
+## 32. Test these service management commands with your web server and use web browser to verify the operation whether the server is running or not. Try and explain:
 
 ```sh
 Modern way for distros using systemd:
@@ -515,19 +546,31 @@ systemctl stop apache2
 systemctl start apache2
 systemctl
 ```
+   > `systemctl` shows logs from running services and after restarting apache2 we can see logs from shutting down and then starting apache2. Running `systemctl` prints out all running services (including apache2). This print out is enormous in size so I refrain from pasting it here.
+   > ![systemctl](pictures/32-systemctl.png)
 
-
-33. Check Apache access.log file contents in /var/log/apache2/ directory. Can you find your connections to the web server?
+## 33. Check Apache access.log file contents in /var/log/apache2/ directory. Can you find your connections to the web server?
+   > Yup. First ones are from my default browser Zen, last one from Edge:
+   > ![access logs](pictures/33-access-logs.png)
 
 
 # Week 3
 
-Assignments to the learning diary (You can do these in small groups. Learning diaries are personal):
 
-34. Study and explain shortly following commands and concepts:
+
+1.  Study and explain shortly following commands and concepts:
 - sh, bash, zsh
+   > `sh` (Shell Command Language) is programming specification. `Bash` implements this specification and much more. Bash is commonly used command interpreter on many distributions. `Zsh` is popular alternative to bash.
 - screen and tmux
+   > `screen` and `tmux` allow users to start multiple terminal sessions from one single window. Both support detaching them and later returning to them. This allows leaving programs running on remote machine such as server and returning to them in later time and possibly even from different machine.
 - ps, pgrep, pstree, pidof
+   > `ps` will print out running processes, with flag `-e` displays all processes.
+   > `pgrep` enables grep like search of processes, returns process ids:
+   > ![pgrep](pictures/34-pgrep.png)
+   > `pstree` displays processes in tree format grouping them visually.
+   > ![pstree](pictures/34-pstree.png)
+   > `pidof` gives process ids for a program.
+   > ![pidof](pictures/34-pidof.png)
 - jobs, disown
 - fg, bg
 - top, htop
@@ -544,11 +587,11 @@ Assignments to the learning diary (You can do these in small groups. Learning di
 - source, .bashrc
 - shell build-in variables, export
 
-35. How and when you start new shells? How to exit a shell?
+1.  How and when you start new shells? How to exit a shell?
 
-36. Add shell alias “diskusage” to your shell startup-files (example .bashrc). Alias should print only current disk usage of your home directory
+2.  Add shell alias “diskusage” to your shell startup-files (example .bashrc). Alias should print only current disk usage of your home directory
 
-37. Create shell alias “pp” which requires one parameter and will print all running processes including details with that name. Usage example:
+3.  Create shell alias “pp” which requires one parameter and will print all running processes including details with that name. Usage example:
 ```sh
     tkorpela$ pp sleep
     root 21109  0.0  0.1  4084  556 pts/8  S  20:02   0:00 sleep 100
@@ -556,11 +599,11 @@ Assignments to the learning diary (You can do these in small groups. Learning di
     root 21113  0.0  0.1  3684  556 pts/8  S  20:03   0:00 grep sleep
 ```
 
-38. Which directories are currently in you PATH variable?
+1.  Which directories are currently in you PATH variable?
 
-39. How do you start process directly into background when entering a command?
+2.  How do you start process directly into background when entering a command?
 
-40. Start few sleep 60 processes (one minute idle loop) to the background and:
+3.  Start few sleep 60 processes (one minute idle loop) to the background and:
 - How can you find and terminate them all with one-liner? Try not to use pkill, killall or xargs -commands.
 - How would you do the previous killing task with xargs?
 - Start one 1000 second sleep to the foreground.
@@ -570,7 +613,7 @@ Assignments to the learning diary (You can do these in small groups. Learning di
 - Suspend process again and send it to background.
 - Kill previous sleep process from background.
 
-41. What is the difference between kill -9 and kill -1?
+1.  What is the difference between kill -9 and kill -1?
 
 
 # Week 4
