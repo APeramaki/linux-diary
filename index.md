@@ -158,30 +158,30 @@
 	- cp /tmp/test.txt ~/temp/
 	> Copies file `test.txt` from folder `/tmp/` to folder ~/temp/
 
-3. What is the difference between Linux kernel and GNU/Linux distribution?
+## 3. What is the difference between Linux kernel and GNU/Linux distribution?
 > Despite Linux usually used to refer to full operating system, it is more presicely only the kernel (the core of the system). GNU is older attempt to create totally free (financially and otherwise) operating system that has not materialized. It has however, managed to build huge number of software needed for OS, many of them are in section 2 (scroll man page to end, many of them include `GNU coreutils 8.32` or similar). 
 > GNU/Linux is the result of using Linux kernel and GNU programs to build full operating system. Although that is usually what happens in Linux distributions, it doesn't need to be. Other operating systems can be built on Linux kernel with minimal or nonexistant need of GNU project software. Examples being Alpine linux and Android.
 
-4. Name some very common Linux distributions
+## 4. Name some very common Linux distributions
 > Ubuntu, Mint, Arch, Debian
 
-5. What is GPLv2/v3 license? And BSD style license?
+## 5. What is GPLv2/v3 license? And BSD style license?
 > GPL licences allow users to freely use and modify provided software as long as that modification is then shared with same license, including the source code. It does allow for commerial use as long as work or it's derivatives are licenced with GPL.
 > BSD is much less restrictive than GPL. It allows those modifications to be close sourced even when used for commercial use. In practice, it only requires requires acknowledgement/creditation of the original author. There 3 clause version, that prohibits the use of name of project or its authors for endorcement without permission.
 
-6. What is (operating system) shell?
+## 6. What is (operating system) shell?
 > Shell is a program that allows users to interact with operating system to manage their computer/operating system. They can be command line or graphical in nature although the word shell is usually associated with CLI. As they are just a specialized program, there is often possibility to change shell on many operating systems or specialized versions, such as remote shell.
 
-7. What are case sensitive file names?
+## 7. What are case sensitive file names?
 > Most operating system use case sensitive file naming, meaning files and directories with different character cases are distinct names. For example, file `file.txt` and `File.txt` are separete files and can be distinguished. This is in contrast with *case insensitive* as is used in Windows. In previously mentioned files Windows would not allow those files to coexist in same folder.
 
-8. Describe common purpose of files and directories in “/home”, “/etc”, “/usr/bin” and “/var”
+## 8. Describe common purpose of files and directories in “/home”, “/etc”, “/usr/bin” and “/var”
 > */home* contains folder for each user on the system. This is the location where shell usually starts at (also referred as ~).
 > */etc* contains configuration files for multitude of programs. Many of these meant to be user modified to change how programs work.
 > */usr/bin* contains programs not directly assosiated with operating system or administrator (those are in */bin* and */sbin*) but those intended for end user to use.
 > */var* is bit less intuitive. It is meant for data that changes as system is used. It can contain files of hugely different types that are meant to change frequently or live for unspecified time. There are directories for mail boxes (in and out), printer queue, games, temporary files, log files and many more.
 
-9. What is shell PATH? What is the difference between absolute and relative path?
+## 9. What is shell PATH? What is the difference between absolute and relative path?
 > PATH is environment variable with list of *absolute paths* to folders with executable files. When user tries to start program ex. `ls` or `python`, the shell starts to look for that file from paths listed in PATH. Below is example of PATH from my WSL system, formatted for easier reading.
 > ```bash
 > usur@VAINAMOINEN:~$ echo $PATH 
@@ -230,13 +230,13 @@
 >  ```
 > Interesingly, WSL installation includes paths from Windows too and allows starting programs installed on windows, such as `python.exe` or `putty.exe`.
 
-10. What is the purpose of tilde character (~) for most Linux shells. For example ls ~/
+## 10. What is the purpose of tilde character (~) for most Linux shells. For example ls ~/
 > ~ refers to current user's home directory so ~ is shorthand for `/home/<current users name>`
   
-11. How do you recognise a hidden file in any common Unix/Linux file systems?
+## 11. How do you recognise a hidden file in any common Unix/Linux file systems?
 > Hidden files have . at the start of their names.
   
-12. What is the meaning of “piping data between commands”?
+## 12. What is the meaning of “piping data between commands”?
 > Piping allows passing one programs output to other programs input. For example, we could list all files with `ls -la` and use grep to find lines with `vscode` in them.
 > ```bash
 > usur@VAINAMOINEN:~$ ls -la | grep -i vscode
@@ -244,7 +244,7 @@
 > drwxr-xr-x 5 usur usur 4096 Nov 18 20:07 .vscode-server
 >  ```
   
-13. What are seti-uid (suid) and set-gid (sgid) bits for file permissions?
+## 13. What are seti-uid (suid) and set-gid (sgid) bits for file permissions?
 > Suid and Sgid allow setting permissions to files to make them run with permissions of owner/owners group. This allows users to run specific programs as if they had permissions of owner (such as root) or their group. This poses a security risk if handled poorly, but is necessary for many things. One such thing is password management. Below example of how suid looks like in UI.
 > ```bash
 > usur@VAINAMOINEN:~$ ls -la | grep Suid
@@ -255,16 +255,16 @@
 > 766 fileWithoutSuid
 > ```
 
-14. What is a “sticky-bit”?
+## 14. What is a “sticky-bit”?
 > Sticky-bit makes files unremovable for non-owner users that have write access to file or folder. Especially useful for folders that should not be deleted but where users need write access.
   
-15. Use manual pages and explain what will command “uname -a” do?
+## 15. Use manual pages and explain what will command “uname -a” do?
 > `uname` prints system information, -a gives all information.
   
-16. Use manual pages and explain what will command “wc -l” do?
+## 16. Use manual pages and explain what will command “wc -l” do?
 > `wc -l` prints out *new lines* in the file provided as argument.
   
-17. Linux file handling intro:
+## 17. Linux file handling intro:
     - List five largest files in /usr/lib -directory (Tip: Use ls command with proper command line options)
 > TODO
   
@@ -281,7 +281,7 @@
     - Change file qwerty.txt file permissions so that only you (the owner) has a read access to it and nothing else
     - Create symbolic link to you home directory “this_is_my_link” and make it point to the exer2-directory
     - How can you find out your current directory location and PATH? How far (in directories) are you from the file system root (/)?
-18. Remove files and directories which you created on this exercise
+## 18. Remove files and directories which you created on this exercise
 
 **Extra assignments (No need to answer to the learning diary. Ignore for grading):**
 
@@ -298,7 +298,7 @@
 - What is the code editor / IDE being used?
 > VSCode
 
-19. If you have a Windows host:
+## 19. If you have a Windows host:
 - Install the Cmder and Winscp
 - Try common file commands with Cmder (commands like ls, cd, mkdir, Bash shell etc)
 > Tried. Failed to see much benefit over powershell with commands like that.
@@ -308,7 +308,7 @@
 > ![linux.png](/pictures/linux.png)
 
 
-20.  Study and explain shortly following commands and concepts:
+## 20.  Study and explain shortly following commands and concepts:
 - zip, unzip
 > Allows packing and compressing files and folders to single .zip -file. Unzip is used to decompress and unpack them.
 - tar
@@ -338,7 +338,7 @@
 - GNU gcc / g++
 > GNU projects c and c++ compilers.
 
-21.  Install build-essential meta package (containing development tools) to your server with: sudo apt install build-essential
+## 21.  Install build-essential meta package (containing development tools) to your server with: sudo apt install build-essential
 > Done
 > ```bash
 > usur@VAINAMOINEN:/usr/bin$ sudo apt install build-essential
@@ -351,7 +351,7 @@
 > 0 upgraded, 0 newly installed, 0 to remove and 141 not upgraded.
 > ```
   
-22.  Get the source code for curses-based (“text-graphics”) worm game [nibbles-1.2.tar.gz](https://tl.oamk.fi/cdos/dl/nibbles-1.2.tar.gz)
+## 22.  Get the source code for curses-based (“text-graphics”) worm game [nibbles-1.2.tar.gz](https://tl.oamk.fi/cdos/dl/nibbles-1.2.tar.gz)
 - Unpack the source package to a some temporary directory under your home directory
 - Compile the game and try playing it. Note: Ubuntu does not have ncursed development libraries installed by default. Use apt install to install the missing library dependencies: sudo apt install libncurses-dev
 > After installing libncurses-dev and unpacking:
@@ -377,7 +377,7 @@
 > usur@VAINAMOINEN:~/nibbles/nibbles-1.2$
 > ```
 
-23.    Get the source code for another curses-based (“text-graphics”) Tetris game [nct-1.4.tar.gz](https://tl.oamk.fi/cdos/dl/nct-1.4.tar.gz)
+## 23.    Get the source code for another curses-based (“text-graphics”) Tetris game [nct-1.4.tar.gz](https://tl.oamk.fi/cdos/dl/nct-1.4.tar.gz)
    - Unpack source package to temporary directory in your home directory.
    > ```bash
    > usur@VAINAMOINEN:~$ mkdir tetris
@@ -410,7 +410,7 @@
    - Test if game works
    - Remove temporary game directory
 
-.  Download the file harj_zip_paketti.zip. Zip-package has following hierarchy:
+## 24.  Download the file harj_zip_paketti.zip. Zip-package has following hierarchy:
 
     ```paahakemisto
           hakemisto_a
@@ -423,17 +423,28 @@
           jap-inv3.jpg
           tekstia.txt
 	```
-1.  With the ZIP file:
+   > ![wget](pictures/24-wget.png)
+
+
+## 25.  With the ZIP file:
 - Unpack package and all subdirectories to a temporary directory in your home directory
+   > ![unzipping](pictures/25-harj-zip-unzip.png)
+   > ![tree](pictures/25-tree.png)
 - Create tar archive from unpacked files and directories and name it to a paketti.tar
+   > ![tar](pictures/25-tar.png)
 - List contents of the paketti.tar. If everything is correct, delete paahakemisto directory and all subdirectories under it. Delete also the harj_zip_paketti.zip file. Don’t delete the paketti.tar -file you just created.
+   > ![tar-tvf](pictures/25-tar-tvf.png)
 - Unpack only the etherkill.jpg file from tar archive.
+   > ![extracting-etherkill](pictures/25-tar-xvf-etherkill.png)
 - Compress paketti.tar archive with a gzip command.
+   > ![zipping-tar](pictures/25-zip.png)
 - What is the size of paketti.tar.gz now?
+   > 263KB
 - Uncompress paketti.tar.gz and compress it again, but now with bzip2. Check the size again. Any difference?
+   > ![bzipped](pictures/25-bzip.png)
 - Create some gzipped tar archive and use SSH (scp) to copy it to the students.oamk.fi (students.oamk.fi is a Linux server you can use with your Oamk user account credentials)
 
-1.  Compile this C source code with gcc and check if it works. helloworld.c source code:
+## 26.  Compile this C source code with gcc and check if it works. helloworld.c source code:
 ```cpp
 #include <stdio.h>
 int main(void) {
@@ -441,8 +452,9 @@ int main(void) {
 		return 0;
 }
 ```
+   > ![compile](pictures/26-compile-c.png)
 
-1.  Compile this C++ source code with g++ and test it. helloworld.cpp source code:
+## 26.  Compile this C++ source code with g++ and test it. helloworld.cpp source code:
 
 ```cpp
 #include <iostream>
@@ -453,15 +465,16 @@ int main()
 	cout << "Hello World!\n";
 }
 ```
+   > ![cpp-compile](pictures/27-compile-cpp.png)
 
 
-28. With previously compiled helloworld C++ binary:
+1.  With previously compiled helloworld C++ binary:
 - What are statically linked libraries? Why would you use them?
 - Inspect the size of ready binary file (that compiled helloworld binary). Compile it again and use some different output filename. With g++, use now statically linked libraries (with compiler’s -static parameter). Compare the file sizes of statically and dynamically linked binaries
 - Use strace to inspect interiors (system calls) of ls command: “strace ls” and compare the output to a “strace chmod”. Check _exit -values. Why chmod returns 1 and ls returns 0?
 - Why and when Unix administrators and programmers use system call tracing programs and debuggers such as gdb and strace?
 
-29. Solve these service management assignments (Note: most assignments will require root access):
+1.  Solve these service management assignments (Note: most assignments will require root access):
 - Check what network adapters your Linux host/server has with command: ip addr or ifconfig (ifconfig is not necessary installed by default)
 - Listen inbound ICMP traffic in your server with tcpdump command line protocol analyzer and test if you can see the traffic when you ping your server: tcpdump -n -i YOUR_NETWORK_ADAPTER_NAME_HERE icmp
 - Install apache web server with apt install apache2 and test that you can access your server with a web browser
@@ -471,7 +484,7 @@ int main()
 - Explain what are the files in /etc/init.d/ directory?
 - Study but don’t do: What is runlevel 6? What is the purpose of init 6 command? How would you do the same with systemd?
 
-30. Test these service management commands with your web server and use web browser to verify the operation whether the server is running or not:
+1.  Test these service management commands with your web server and use web browser to verify the operation whether the server is running or not:
 ```sh
 # Somewhat bad or at least old way of some or older distros:
 
