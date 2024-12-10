@@ -583,7 +583,10 @@ systemctl
 > `nice` allows starting a program with non-default 'niceness'. Niceness signifies processes willingness to yield time to other process. Minimun value (-20) is most beneficial for process while maximum (19) gives more time to other processes. `renice` allows changing niceness of processes already running.
 > ![renice](pictures/34-nice-renice.png)
 - su, sudo
+> `su` allows changing to other user _with their password_. As it needs password of other user it is rarely practical to change to other normal user. Changing to root/administrator is more practical use case. It should be used sparingly as all commands ran after `su` will be ran with priviledges of new user, likely root.
+> `su` is more common way to gain elevated priviledges. `su` needs _current users_ password to run, this user must also be listed in _sudoers_ group.
 - sleep
+> `sleep` pauses execution for specified time. Most useful in bash scripts or to set simple timer for following command to start after.
 - xargs
 - nohup
 - kill
