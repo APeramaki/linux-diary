@@ -2,161 +2,156 @@
 
 ## 1. Browse this [Linux Command Line Primer](https://www.digitalocean.com/community/tutorials/a-linux-command-line-primer)
 	> Done
+
 ## 2. Describe following commands and concepts:
 
-	- man, apropos
-	> man provides way to read program and system manuals. Apropos can be used to search short descriptions of those manual pages for word or regular expression. man can provide very similar functionality with  `-k` or `-K` arguments
+- man, apropos
+> man provides way to read program and system manuals. Apropos can be used to search short descriptions of those manual pages for word or regular expression. man can provide very similar functionality with  `-k` or `-K` arguments
+- man date
+> returns manual page for date program that can be used to set system time or print it out with variety of formatting options.
+  
+- ls
+> ls lists files and folders in path provided to it or current folder if it's not provided. Has huge number of options for showing more info or formatting it differently. Perhaps most interesting or useful is `-a` to show hidden files (those that start with .), `-l` toE print more info on listed files.
 
-	- man date
-	> returns manual page for date program that can be used to set system time or print it out with variety of formatting options.
-     
-	- ls
-	> ls lists files and folders in path provided to it or current folder if it's not provided. Has huge number of options for showing more info or formatting it differently. Perhaps most interesting or useful is `-a` to show hidden files (those that start with .), `-l` toE print more info on listed files.
-	
-	- ls --help
-	>  ls --help provides help page for ls program. This is largely same info that is available through man, although lacks some sections.
+- ls --help
+>  ls --help provides help page for ls program. This is largely same info that is available through man, although lacks some sections.
+ 
+- date
+> program to set and access system time. Prints time in localized format when opened without any arguments. Note: 'la'  comes from system time format, even when system language is English.
+>  ```sh
+> la 9.11.2024 12.53.55 +0200
+>  ```
     
-	- date
-	> program to set and access system time. Prints time in localized format when opened without any arguments. Note: 'la'  comes from system time format, even when system language is English.
-	>  ```sh
-	> la 9.11.2024 12.53.55 +0200
-	>  ```
-	    
-	- date --help
-	> Prints out help page for previously mentioned date program, including many formatting options.
-
-	- cd
-	> cd is program that changes current working directory (pwd) to one provided as argument. When no argument is given, it changes to home directory defined in $HOME environment variable if available.
-	    
-	- cd -
-	> Changes pwd to previous pwd, stored in environment variable $OLDPWD
-	    
-	- cd ..
-	> Moves to current pwd's parent folder
+- date --help
+> Prints out help page for previously mentioned date program, including many formatting options.
+- cd
+> cd is program that changes current working directory (pwd) to one provided as argument. When no argument is given, it changes to home directory defined in $HOME environment variable if available.
     
-	- ls -lat
-	> This combines three optional flags for ls -command. -l shows all files and folders on their own lines with additional info, such as read/write/execution rights, owner, group and creation date. -a show also hidden files (those with name starting with dot). -t orders files in order of creation date, newest first.
-
-	- ls -s aaaa*
-	> -s adds size data to normal file/directory list, size is in blocks on my system 1 block = 1024 bytes and it seems they are reserved for files in chunks of 4. `aaaa*` specifies file name where * is wild card.
-	>  ```sh
-	> :$ ls -l
-	> total 20
-	> -rw-r--r-- 1 atte atte    47  9.11. 19:32 aaaaa
-	> -rw-r--r-- 1 atte atte 13753  9.11. 19:34 aaaab
-	> ~/temp ls -s aaaa*
-	> 4 aaaaa  16 aaaab
-	>   ```
+- cd -
+> Changes pwd to previous pwd, stored in environment variable $OLDPWD
     
-	- pwd
-	> pwd prints current working directory. Has only two options, -P (default) prints physical path from root avoiding symlinks, -L prints path directly from environment variable $PWD, even if it contains symlinks
-		
-	- chown
-	> Allows changing of owner of the file and/or it's group.
+- cd ..
+> Moves to current pwd's parent folder
+ 
+- ls -lat
+> This combines three optional flags for ls -command. -l shows all files and folders on their own lines with additional info, such as read/write/execution rights, owner, group and creation date. -a show also hidden files (those with name starting with dot). -t orders files in order of creation date, newest first.
+- ls -s aaaa*
+> -s adds size data to normal file/directory list, size is in blocks on my system 1 block = 1024 bytes and it seems they are reserved for files in chunks of 4. `aaaa*` specifies file name where * is wild card.
+>  ```sh
+> :$ ls -l
+> total 20
+> -rw-r--r-- 1 atte atte    47  9.11. 19:32 aaaaa
+> -rw-r--r-- 1 atte atte 13753  9.11. 19:34 aaaab
+> ~/temp ls -s aaaa*
+> 4 aaaaa  16 aaaab
+>   ```
+ 
+- pwd
+> pwd prints current working directory. Has only two options, -P (default) prints physical path from root avoiding symlinks, -L prints path directly from environment variable $PWD, even if it contains symlinks
+	
+- chown
+> Allows changing of owner of the file and/or it's group.
+ 
+- chmod
+>  Change permissions to file or directory. Permissions can be modified for owner, group and others. All those can have any combination of following: Read, write and/or execute, although some of the possible combinations don't make much sense.
+- chgrp
+> Changes group of the given file or folder.  Can be done recursively with -R 
+
+- chmod 644 file
+> Changes permissions for file or folder named file to following:
+> Owner: Read and write,
+> Group: Read
+> Others: Read
+	
+- chmod g+x myfile
+> Adds execution rights for group on file `myfile`
     
-	- chmod
-	>  Change permissions to file or directory. Permissions can be modified for owner, group and others. All those can have any combination of following: Read, write and/or execute, although some of the possible combinations don't make much sense.
+- rm
+> General removal utility. Removes file provided as argument. By default, doesn't remove folders.
 
-	- chgrp
-	> Changes group of the given file or folder.  Can be done recursively with -R 
-	
-	- chmod 644 file
-	> Changes permissions for file or folder named file to following:
-	> Owner: Read and write,
-	> Group: Read
-	> Others: Read
-		
-	- chmod g+x myfile
-	> Adds execution rights for group on file `myfile`
-	    
-	- rm
-	> General removal utility. Removes file provided as argument. By default, doesn't remove folders.
-	
-  - rm -r mydoc
-	> Removes folder `mydoc` if it's empty
-  
-	- cp primary secondary
-	>  Copies file `primary` to file `secondary`
-  
-	- mv file2 file1
-	> moves `file2` to location `file1`. In practice, as presented it renames a file.
+   rm -r mydoc
+> Removes folder `mydoc` if it's empty
 
-	- mkdir mydata
-	> Creates a directory `mydata`
-  
-	- rmdir mydata
-	> removes directory `mydata` but only if it is empty.
-  
-	- more, less
-	> Both programs allow easy reading of text files. As per documentation of more: "less provides more emulation plus extensive enhancements". According to manual for man, it also uses less by default if available.
-  
-	- file
-	> Tries to classify file given as an argument. Example below it recognizes text file with correctly formatted JSON even with wrong extension.
-	>  ```
-	> itsMe:~$ file enOleTarTiedosto.tar
-	> enOleTarTiedosto.tar: JSON data
-	>  ```
-  
-	- stat
-	>  ```sh
-	> :~$ stat enOleTarTiedosto.tar
-	> File: enOleTarTiedosto.tar
-	> Size: 21              Blocks: 8          IO Block: 4096   regular file
-	> Device: 830h/2096d      Inode: 3678        Links: 1
-	> Access: (0644/-rw-r--r--)  Uid: ( 1000/    usur)   Gid: ( 1000/    usur)
-	> Access: 2024-11-18 20:12:36.838682373 +0200
-	> Modify: 2024-11-18 20:10:34.988694611 +0200
-	> Change: 2024-11-18 20:12:31.168682931 +0200
-	>  Birth: 2024-11-18 20:07:11.528715159 +0200
-	>  ```
-  
-	- df
-	> Displays disk usage. Example below is not normal for linux, but typical for WSL installation.
-	>  ```sh
-	> :~$ df
-	> Filesystem      1K-blocks      Used Available Use% Mounted on
-	> none              8165976         0   8165976   0% /usr/lib/modules/5.15.167.4-microsoft-standard-WSL2
-	> none              8165976         4   8165972   1% /mnt/wsl
-	> drivers         975663672 915308860  60354812  94% /usr/lib/wsl/drivers
-	> /dev/sdd       1055762868  34458116 967601280   4% /
-	> none              8165976       104   8165872   1% /mnt/wslg
-	> none              8165976         0   8165976   0% /usr/lib/wsl/lib
-	> rootfs            8162564      2208   8160356   1% /init
-	> none              8165976         0   8165976   0% /run
-	> none              8165976         0   8165976   0% /run/lock
-	> none              8165976         0   8165976   0% /run/shm
-	> none              8165976         0   8165976   0% /run/user
-	> tmpfs             8165976         0   8165976   0% /sys/fs/cgroup
-	> none              8165976        76   8165900   1% /mnt/wslg/versions.txt
-	> none              8165976        76   8165900   1% /mnt/wslg/doc
-	> C:\             975663672 915308860  60354812  94% /mnt/c
-	> D:\              52428800  11743664  40685136  23% /mnt/d
-	>  ```
-	
-  - ln
-	> creates a link to file or folder. In example below, it creates link `shortcut` to folder `hello/second/`
-	>  ```sh
-	> :~$ ln -s hello/second/ shortcut
-	> :~$ ls -l
-	> total 12
-	> drwxr-xr-x 3 usur usur 4096 Nov 18 20:31 hello
-	> drwxr-xr-x 2 usur usur 4096 Aug 17 20:30 models
-	> lrwxrwxrwx 1 usur usur   13 Nov 18 21:43 shortcut -> hello/second/
-  
-	- which, whereis
-	> which tells path to executable, can show path to it's manual and source too. Whereis provides them all as default.
-  
-	- find
-	> Allows searching for files with many different criteria such size, name, permissions... Returns paths to files 
-  
-	- touch
-	> Updates time of access and modification to current time (default). As default, creates empty file of that name if it doesn't exist.
-  
-	- touch mynewfile
-	> Changes files access and update time to current time, if it doesn't exist, it is created.
+- cp primary secondary
+>  Copies file `primary` to file `secondary`
 
-	- cp /tmp/test.txt ~/temp/
-	> Copies file `test.txt` from folder `/tmp/` to folder ~/temp/
+- mv file2 file1
+> moves `file2` to location `file1`. In practice, as presented it renames a file.
+- mkdir mydata
+> Creates a directory `mydata`
+
+- rmdir mydata
+> removes directory `mydata` but only if it is empty.
+
+- more, less
+> Both programs allow easy reading of text files. As per documentation of more: "less provides more emulation plus extensive enhancements". According to manual for man, it also uses less by default if available.
+
+- file
+> Tries to classify file given as an argument. Example below it recognizes text file with correctly formatted JSON even with wrong extension.
+>  ```
+> itsMe:~$ file enOleTarTiedosto.tar
+> enOleTarTiedosto.tar: JSON data
+>  ```
+
+- stat
+>  ```sh
+> :~$ stat enOleTarTiedosto.tar
+> File: enOleTarTiedosto.tar
+> Size: 21              Blocks: 8          IO Block: 4096   regular file
+> Device: 830h/2096d      Inode: 3678        Links: 1
+> Access: (0644/-rw-r--r--)  Uid: ( 1000/    usur)   Gid: ( 1000/    usur)
+> Access: 2024-11-18 20:12:36.838682373 +0200
+> Modify: 2024-11-18 20:10:34.988694611 +0200
+> Change: 2024-11-18 20:12:31.168682931 +0200
+>  Birth: 2024-11-18 20:07:11.528715159 +0200
+>  ```
+
+- df
+> Displays disk usage. Example below is not normal for linux, but typical for WSL installation.
+>  ```sh
+> :~$ df
+> Filesystem      1K-blocks      Used Available Use% Mounted on
+> none              8165976         0   8165976   0% /usr/lib/modules/5.15.167.4-microsoft-standard-WSL2
+> none              8165976         4   8165972   1% /mnt/wsl
+> drivers         975663672 915308860  60354812  94% /usr/lib/wsl/drivers
+> /dev/sdd       1055762868  34458116 967601280   4% /
+> none              8165976       104   8165872   1% /mnt/wslg
+> none              8165976         0   8165976   0% /usr/lib/wsl/lib
+> rootfs            8162564      2208   8160356   1% /init
+> none              8165976         0   8165976   0% /run
+> none              8165976         0   8165976   0% /run/lock
+> none              8165976         0   8165976   0% /run/shm
+> none              8165976         0   8165976   0% /run/user
+> tmpfs             8165976         0   8165976   0% /sys/fs/cgroup
+> none              8165976        76   8165900   1% /mnt/wslg/versions.txt
+> none              8165976        76   8165900   1% /mnt/wslg/doc
+> C:\             975663672 915308860  60354812  94% /mnt/c
+> D:\              52428800  11743664  40685136  23% /mnt/d
+>  ```
+
+   ln
+> creates a link to file or folder. In example below, it creates link `shortcut` to folder `hello/second/`
+>  ```sh
+> :~$ ln -s hello/second/ shortcut
+> :~$ ls -l
+> total 12
+> drwxr-xr-x 3 usur usur 4096 Nov 18 20:31 hello
+> drwxr-xr-x 2 usur usur 4096 Aug 17 20:30 models
+> lrwxrwxrwx 1 usur usur   13 Nov 18 21:43 shortcut -> hello/second/
+
+- which, whereis
+> which tells path to executable, can show path to it's manual and source too. Whereis provides them all as default.
+
+- find
+> Allows searching for files with many different criteria such size, name, permissions... Returns paths to files 
+
+- touch
+> Updates time of access and modification to current time (default). As default, creates empty file of that name if it doesn't exist.
+
+- touch mynewfile
+> Changes files access and update time to current time, if it doesn't exist, it is created.
+- cp /tmp/test.txt ~/temp/
+> Copies file `test.txt` from folder `/tmp/` to folder ~/temp/
 
 ## 3. What is the difference between Linux kernel and GNU/Linux distribution?
 > Despite Linux usually used to refer to full operating system, it is more presicely only the kernel (the core of the system). GNU is older attempt to create totally free (financially and otherwise) operating system that has not materialized. It has however, managed to build huge number of software needed for OS, many of them are in section 2 (scroll man page to end, many of them include `GNU coreutils 8.32` or similar). 
