@@ -558,7 +558,7 @@ systemctl
 
 
 
-1.  Study and explain shortly following commands and concepts:
+## 34.  Study and explain shortly following commands and concepts:
 - sh, bash, zsh
    > `sh` (Shell Command Language) is programming specification. `Bash` implements this specification and much more. Bash is commonly used command interpreter on many distributions. `Zsh` is popular alternative to bash.
 - screen and tmux
@@ -572,9 +572,16 @@ systemctl
    > `pidof` gives process ids for a program.
    > ![pidof](pictures/34-pidof.png)
 - jobs, disown
+> `jobs` lists currently running background tasks. Tasks are sent to background by starting them normally and appending `&` to starting command. Alternative is to suspend execution with `Ctrl + Z` and then send it to background with `bg` command.
+> `disown` removes process from terminal's list of process. This means, that process's execution is not halted even if terminal is shut down.
 - fg, bg
+> `bg` sends halted program (can be done with `Ctrl + Z`) back to execution in background. `fg` returns it back to foreground. `Jobs` can be used to list processes and their id's. Example below. Something to note, is that even after pressing `Ctrl + Z` some outputs do come through, as seen below
+> ![jobs and bg-fg example](pictures/34-bg-fg.png)
 - top, htop
+> Both programs can be used to see computers resource usage, such as processor, memory and swap space. Both also list all tasks running. `htop` is more modern with multiple more advanced views to make 
 - nice, renice
+> `nice` allows starting a program with non-default 'niceness'. Niceness signifies processes willingness to yield time to other process. Minimun value (-20) is most beneficial for process while maximum (19) gives more time to other processes. `renice` allows changing niceness of processes already running.
+> ![renice](pictures/34-nice-renice.png)
 - su, sudo
 - sleep
 - xargs
