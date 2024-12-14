@@ -583,20 +583,36 @@ systemctl
 - sleep
 > `sleep` pauses execution for specified time. Most useful in bash scripts or to set simple timer for following command to start after.
 - xargs
+> `xargs` allows setting program output as input for another program. This works little differently than piping normally as it allows giving arguments to programs with standard output even when it doesn't noramlly support it.
 - nohup
+> `nohup` tells program to ignore normal stop signals and input, therefore it can stay running in background even if user logs out. Output of program is directed into nohup.out
 - kill
+> `kill` terminates program using their process id (pid). By default if orders program to shutdown gracefully but with arguments it can be modified.
 - pkill, killall
+> `fkill` provides terminal user interface for easier program termination. 
 - w, who
+> Both tell information of current users and their processes.
 - write, wall
+> Allows writing a message to user and `wall` to all users.
 - aliases
+> Aliases allow setting shorthands for common commands.
 - source, .bashrc
+> `.bashrc` is a script file that runs everytime user logs in. This allows setting aliases, running programs and enabling terminal behaviour.
 - shell build-in variables, export
+> shell has many built-in variables that are ment to help with use of the shell. These vary from $HOME (home dirctory), $PWD (current working directory)
+> `export` allows adding variables to environment. These can then be used by programs. These are often used on virtual machines or dockers on cloud providers, as they are reasonably safe way to give programs api-keys, passwords or similar variables.
 
-1.  How and when you start new shells? How to exit a shell?
+## 35.  How and when you start new shells? How to exit a shell?
+> When running native linux system, using interactive tools (screen, tmux) is good option if multiple shells are needed. When having remote connection (via SSH or on WSL) all sessions start own shells when logging in. It is also possible to change shell with it's normal command (bash, zsh, etc). Exiting shell is done with `Ctrl + C`, `exit`/`logout`-command.
 
-2.  Add shell alias “diskusage” to your shell startup-files (example .bashrc). Alias should print only current disk usage of your home directory
+## 36.  Add shell alias “diskusage” to your shell startup-files (example .bashrc). Alias should print only current disk usage of your home directory
+> I added following to `.bashrc`
+> ```sh
+> alias diskusage='du -sh ~'
+> ```
+> ![diskusage](pictures/36-diskusage.png)
 
-3.  Create shell alias “pp” which requires one parameter and will print all running processes including details with that name. Usage example:
+## 37.  Create shell alias “pp” which requires one parameter and will print all running processes including details with that name. Usage example:
 ```sh
     tkorpela$ pp sleep
     root 21109  0.0  0.1  4084  556 pts/8  S  20:02   0:00 sleep 100
@@ -604,7 +620,8 @@ systemctl
     root 21113  0.0  0.1  3684  556 pts/8  S  20:03   0:00 grep sleep
 ```
 
-1.  Which directories are currently in you PATH variable?
+
+## 38. Which directories are currently in you PATH variable?
 
 2.  How do you start process directly into background when entering a command?
 
