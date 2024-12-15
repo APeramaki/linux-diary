@@ -2,6 +2,7 @@
 
 This diary can be read [here](https://aperamaki.github.io/linux-diary/)
 Total done 53,5/82 = 65%
+
 finalfinalv2
 
 # Week 1 done 16/17
