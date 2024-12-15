@@ -1,7 +1,11 @@
+> My answers are listed like this.
+
+This diary can be read [here](https://aperamaki.github.io/linux-diary/)
+Total done 53,5/82 = 65%
+
 # Week 1 done 16/17
 
 ## 1. Browse this [Linux Command Line Primer](https://www.digitalocean.com/community/tutorials/a-linux-command-line-primer)
-	> Done
 
 ## 2. Describe following commands and concepts:
 
@@ -885,7 +889,7 @@ username:x:101:50:Teemu Korpela:/home/tkorpela:/bin/bash
 
 
 ## 50. How do you list last 5 lines from the /etc/passwd file?
->
+
 > ![tail](pictures/50-tail.png)
 
 ## 51. How do you list first 5 lines from the /etc/passwd file?
