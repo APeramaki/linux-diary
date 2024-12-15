@@ -619,30 +619,98 @@ systemctl
     root 21111  0.0  0.1  4084  556 pts/8  S  20:03   0:00 sleep 100
     root 21113  0.0  0.1  3684  556 pts/8  S  20:03   0:00 grep sleep
 ```
+> ```bash
+> # in .bashrc
+> pp(){
+>    ps -au | grep -i "$1"
+> }
+> ```
+> ![pp](pictures/37-pp.png)
 
 
 ## 38. Which directories are currently in you PATH variable?
+> Repeated from question 9.
+> ```bash
+> usur@VAINAMOINEN:~$ echo $PATH 
+> /usr/local/sbin:
+> /usr/local/bin:
+> /usr/sbin:
+> /usr/bin:
+> /sbin:
+> /bin:
+> /usr/games:
+> /usr/local/games:
+> /usr/lib/wsl/lib:
+> /mnt/c/Python311/Scripts/:
+> /mnt/c/Python311/:
+> /mnt/c/WINDOWS/system32:
+> /mnt/c/WINDOWS:
+> /mnt/c/WINDOWS/System32/Wbem:
+> /mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:
+> /mnt/c/WINDOWS/System32/OpenSSH/:
+> /mnt/c/ProgramData/chocolatey/bin:
+> /mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:
+> /mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:
+> /mnt/c/Program Files/dotnet/:
+> /mnt/c/Program Files/Git/cmd:
+> /mnt/c/Program Files/nodejs/:
+> /mnt/c/Program Files/PuTTY/:
+> /Docker/host/bin:
+> /mnt/c/Program Files/Arduino CLI/:
+> /mnt/c/Program Files/PowerShell/7/:
+> /mnt/d/packages/cargo/bin:
+> /mnt/c/Users/<winusername censored>/AppData/Local/Programs/Python/Launcher/:
+> /mnt/c/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/bin:
+> /mnt/c/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/12.3 rel1/bin:
+> /mnt/c/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin:
+> /mnt/c/Users/<winusername censored>/.cargo/bin:
+> /mnt/c/Users/<winusername censored>/AppData/Local/Microsoft/WindowsApps:
+> /mnt/c/Users/<winusername censored>/AppData/Local/Programs/oh-my-posh/bin:
+> /mnt/c/Users/<winusername censored>/AppData/Local/Programs/Microsoft VS Code/bin:
+> /mnt/c/Users/<winusername censored>/AppData/Local/GitHubDesktop/bin:
+> /mnt/c/msys64/ucrt64/bin:
+> /mnt/c/Users/<winusername censored>/AppData/Roaming/npm:
+> /mnt/c/Users/<winusername censored>/.dotnet/tools:
+> /mnt/c/Users/<winusername censored>/.fly/bin:
+> /snap/bin
+>  ```
+> Interesingly, WSL installation includes paths from Windows too and allows starting programs installed on windows, such as `python.exe` or `putty.exe`.
 
-2.  How do you start process directly into background when entering a command?
+## 39. How do you start process directly into background when entering a command?
+> Giving ampersand `&` after command will send program directly to background. It should be noted, that programs will still send their output to terminal. We can avoid that by redirecting output to file `> output.txt` or to null device `> /dev/null`. If we want to redirect error stream to we add `2>&1`.
+> ![ampersand](pictures/39-ampersand.png)
 
-3.  Start few sleep 60 processes (one minute idle loop) to the background and:
+## 40. Start few sleep 60 processes (one minute idle loop) to the background and:
 - How can you find and terminate them all with one-liner? Try not to use pkill, killall or xargs -commands.
+> kill needs flag `-9` to send forceful termination. Sleep won't be killed with graceful shutdown signal.
+> ![kill sleeps](pictures/40-kill-no-xargs.png)
 - How would you do the previous killing task with xargs?
+> ![xargs](pictures/40-xargs.png)
 - Start one 1000 second sleep to the foreground.
 - How do you suspend it?
+> `Ctrl + Z`
+> 
+> ![suspend](pictures/40-suspend.png)
 - How do you list current jobs?
+> with `jobs` as seen in multiple tasks before and after this.
 - How do you get previous sleep process back to foreground?
+> Number x in `[x]` can be used as argument for `fg %x`. If no argument is given, it will return latest.
+> ![fg](pictures/40-fg.png)
 - Suspend process again and send it to background.
 - Kill previous sleep process from background.
+> We can get process id of background process with `jobs -p` and use that to kill process with `kill -9 <process id>`. `-p` flag on screenshot is unnecessary, but I can't be bothered to retake it.
+> ![kill with pid](pictures/40-kill-from-bg.png)
 
-1.  What is the difference between kill -9 and kill -1?
-
+## 41. What is the difference between kill -9 and kill -1?
+> `-9` orders program to shutdown forcefully. What forceful means, is that program can't control it's shutdown so it doesn't have chance to clean up or otherwise shutdown in controlled manner. This can be problematic if program has files open or changes that have not been saved.
+>
+> `-1` sends reload / hangup (`SIGHUB`) signal to program. Traditionally this has been used to signal program that terminal has disconnected.  Programmer can define the program behaviour when receiving the signal. Nowdays, it is usually used to signal to program that it should reload configuration or reload in full.
 
 # Week 4
 
 Assignments to the learning diary (You can do these in small groups. Learning diaries are personal):
 
-42. Study and explain shortly following commands and concepts:
+## 42. Study and explain shortly following commands and concepts:
 - cat, tac
 - grep / egrep
 - wc
