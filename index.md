@@ -836,23 +836,19 @@ Assignments to the learning diary (You can do these in small groups. Learning di
 ## 47. List only 5 largest files from /usr/bin -directory.
         Print largest files first
         Try to not use the ls command's -S option but use use sort command (and related text processing commands if necessary)
+> Firstly, I used `ls -l` to get all data for files. `sort -k5 -n -r` allows me to sort by fifth column, as numeric (not alphabetical) and then in reverse order. `head -5` gives me first 5 rows of the printout.
+> 
+> ![5 largest files](/pictures/47-largest-files.png)
 
-2.  Print only usernames, UID and GID numbers from /etc/passwd -file. Replace all colons with a whitespace. Redirect output to file a “users.txt” in your home directory. Tip: In this example line from /etc/passwd the UID = 101 and GID = 50:
+## 48. Print only usernames, UID and GID numbers from /etc/passwd -file. Replace all colons with a whitespace. Redirect output to file a “users.txt” in your home directory. Tip: In this example line from /etc/passwd the UID = 101 and GID = 50:
 
 ```sh
 username:x:101:50:Teemu Korpela:/home/tkorpela:/bin/bash
 ```
 
-49. Use text editor nano to create a points.txt file to your home directory with following content. This list presents first names and some game scores. Who has most points, wins
-- List contents of points.txt in alphabetic order to STDOUT
-- List contens of file on to STDOUT, but now order is score based. List only best three players with most points
-- How do you list only player names and filter all other data
-- List only first three characters from the beginning of each line of points.txt
-- List points.txt but translate all characters to upper-case
-- List points.txt so that points are printed before names
-- Sort points.txt in alphabetic order and add line numbers in front of lines
+> ![users](pictures/48-users.png)
 
-    points.txt file:
+## 49. Use text editor nano to create a points.txt file to your home directory with following content. This list presents first names and some game scores. Who has most points, wins
 ```
     Teemu:4
     Matti:8
@@ -863,16 +859,49 @@ username:x:101:50:Teemu Korpela:/home/tkorpela:/bin/bash
     Jaska:5
     Erkki:7
 ```
-50. How do you list last 5 lines from the /etc/passwd file?
+- List contents of points.txt in alphabetic order to STDOUT
+> ![in alphabetical order](pictures/49-alphabetical.png)
+- List contens of file on to STDOUT, but now order is score based. List only best three players with most points
+> With `-t :` we define `:` as column separator. Now we can sort with score `-k2`, remembering to use `-nr` for numeric and reversed. `head -3` gives only first 3 rows.
+> ![top three](pictures/49-top-three.png)
+- How do you list only player names and filter all other data
+> There are many options. I chose to use `awk` as it's versatility is growing on me (I believe this is know as _Stockholm syndrome_). As `awk` does good job separating data by delimiters, it is trivial to print the first column on each line.
+> 
+> ![players](pictures/49-players.png)
+- List only first three characters from the beginning of each line of points.txt
+> I'll continue with `awk`. Using `substring` method we can take 3 letters staring from 0.
+> ![three first letters](pictures/49-first-letters.png)
+- List points.txt but translate all characters to upper-case
+> We leave trusty `awk` for a while as `tr` has good methods for this.
+>
+> ![to uppercase](pictures/49-to-upper.png)
+- List points.txt so that points are printed before names
+> Oh look, it's `awk` again.
+>
+> ![reversed](pictures/49-reversed.png)
+- Sort points.txt in alphabetic order and add line numbers in front of lines
+> Firstly, we sort with `sort` and then use `NR` for line numbers. `NR` is built in variable that counts up by records (line numbers)
+> ![with line numbers](pictures/49-line-numbers.png)
+    points.txt file:
 
-51. How do you list first 5 lines from the /etc/passwd file?
+> 
+## 50. How do you list last 5 lines from the /etc/passwd file?
+> ![tail](pictures/50-tail.png)
 
-52. What does tail -f filename command do?
+## 51. How do you list first 5 lines from the /etc/passwd file?
+> ![head](pictures/51-head.png)
 
-53. Fetch current weather in Oulu with lynx (TIP: if there is no lynx, install it with: sudo apt install lynx). The command to download Oulu's weather data is: lynx -dump 'https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::timevaluepair&place=oulu&timestep=10&parameters=temperature'
+## 52. What does tail -f filename command do?
+> `-f` follows changes that come to end of file. Useful especially with logs or similar that might have info appended to them at any point.
+> I set `ping` to write to file and then followed it. It prints last 10 lines at the time of opening, but then prints all new lines.
+> ![pinging tail](pictures/52-ping-tail.png)
+
+## 53. Fetch current weather in Oulu with lynx (TIP: if there is no lynx, install it with: sudo apt install lynx). The command to download Oulu's weather data is: lynx -dump 'https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::timevaluepair&place=oulu&timestep=10&parameters=temperature'
 - Filter the output so that only temperature is displayed and nothing else
+> Using `tail -n +4` we can get rid of first rows we don't want.
+> ![tempereature data](pictures/53-temperatures.png)
 
-54. Use wget to download this stock market textfile
+1.  Use wget to download this stock market textfile
 
 Example line and explanation from file:
 
