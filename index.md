@@ -1,4 +1,4 @@
-# Week 1
+# Week 1 done 16/17
 
 ## 1. Browse this [Linux Command Line Primer](https://www.digitalocean.com/community/tutorials/a-linux-command-line-primer)
 	> Done
@@ -260,9 +260,9 @@
 > `wc -l` prints out *new lines* in the file provided as argument.
   
 ## 17. Linux file handling intro:
+> SKIP
+
     - List five largest files in /usr/lib -directory (Tip: Use ls command with proper command line options)
-> TODO
-  
     - What is the group for /bin/ls file?
     - How do you change file or directory owner and group?
     - How do you change file permissions so that file user has all access rights (read, write and execute), group and others have none?
@@ -276,15 +276,14 @@
     - Change file qwerty.txt file permissions so that only you (the owner) has a read access to it and nothing else
     - Create symbolic link to you home directory “this_is_my_link” and make it point to the exer2-directory
     - How can you find out your current directory location and PATH? How far (in directories) are you from the file system root (/)?
-## 18. Remove files and directories which you created on this exercise
+
 
 **Extra assignments (No need to answer to the learning diary. Ignore for grading):**
 
 - Install Ubuntu Linux (or whatever Linux distribution you prefer) to VMware, VirtualBox, Hyper-V or KVM (or use Windows 10/11 WSL/WSL2). You can skip this if you are already using personal Linux desktop(s) or server from Oamk. Note: Virtualbox may have some compatibility issues with WSL2
 - Install Apache web server to your Linux server and code some very basic web page with text editor such as Nano, Vim or Emacs
 
-# Week 2
-
+# Week 2 done 15/15
 ## 18. Watch some [live coding Twitch streams](https://www.twitch.tv/directory/category/software-and-game-development), select one and answer:
 -	What is the programming language/languages used?
 > Typescript
@@ -315,7 +314,7 @@
 - zcat, zgrep
 > `zcat` allows printing file contents of gzip files. `zgrep` unpacks specified compressed file and passes it to `grep` with paramenters provided to `zgrep`
 - compress
-> No compress found on my distros, nor could I find with google what this might be asking for... (TODO?)
+> No compress found on my distros, nor could I find with google what this might be asking for...
 - bzip2
 > Yet another compression tool, using different algorithm.
 - 7z
@@ -490,7 +489,9 @@ int main()
    > ![pinging](pictures/29-pinging.png)
 
 - Install apache web server with apt install apache2 and test that you can access your server with a web browser
-   > TODO
+   > I had problems with installation of/running apache2 web server on my system, but I realised at later question that it is running.
+   >
+   > ![Apache running](pictures/29-apache.png)
 
 - Listen TCP/80 (web) traffic in your server with tcpdump and test if you can see the inbound TCP SYN segments after you try to access your server with a web browser: tcpdump -n -i YOUR_NETWORK_ADAPTER_NAME_HERE tcp port 80
 - Explain what is runlevel?
@@ -549,9 +550,7 @@ systemctl
    > ![access logs](pictures/33-access-logs.png)
 
 
-# Week 3
-
-
+# Week 3 done 8/8
 
 ## 34.  Study and explain shortly following commands and concepts:
 - sh, bash, zsh
@@ -706,9 +705,8 @@ systemctl
 >
 > `-1` sends reload / hangup (`SIGHUB`) signal to program. Traditionally this has been used to signal program that terminal has disconnected.  Programmer can define the program behaviour when receiving the signal. Nowdays, it is usually used to signal to program that it should reload configuration or reload in full.
 
-# Week 4
+# Week 4 done 14.5/17
 
-Assignments to the learning diary (You can do these in small groups. Learning diaries are personal):
 
 ## 42. Study and explain shortly following commands and concepts:
 - cat, tac
@@ -849,6 +847,7 @@ username:x:101:50:Teemu Korpela:/home/tkorpela:/bin/bash
 > ![users](pictures/48-users.png)
 
 ## 49. Use text editor nano to create a points.txt file to your home directory with following content. This list presents first names and some game scores. Who has most points, wins
+
 ```
     Teemu:4
     Matti:8
@@ -884,11 +883,13 @@ username:x:101:50:Teemu Korpela:/home/tkorpela:/bin/bash
 > ![with line numbers](pictures/49-line-numbers.png)
     points.txt file:
 
-> 
+
 ## 50. How do you list last 5 lines from the /etc/passwd file?
+>
 > ![tail](pictures/50-tail.png)
 
 ## 51. How do you list first 5 lines from the /etc/passwd file?
+>
 > ![head](pictures/51-head.png)
 
 ## 52. What does tail -f filename command do?
@@ -901,7 +902,7 @@ username:x:101:50:Teemu Korpela:/home/tkorpela:/bin/bash
 > Using `tail -n +4` we can get rid of first rows we don't want.
 > ![tempereature data](pictures/53-temperatures.png)
 
-1.  Use wget to download this stock market textfile
+## 54. Use wget to download [this stock market textfile](https://tl.oamk.fi/cdos/dl/stocks.txt)
 
 Example line and explanation from file:
 
@@ -911,6 +912,7 @@ Example line and explanation from file:
 ```
 
 - Use grep (or egrep) and regular expressions to list only companies with “I” anywhere in in code part.
+> ![corps with I](pictures/54-stock-with-i.png)
 - List (only) company names and stock values starting with character “M”.
 
 Output should be:
@@ -920,6 +922,7 @@ Output should be:
     M-real  Corporation  A :MRLAV: -0,42% 4,64 4,83 4,75 4,75 4,75
     M-real Corporation B :MRLBV: -1,06% 4,65 4,67 4,75 4,64 4,67
 ```
+> ![starting with M](pictures/54-starting-M.png)
 
 - Print line only if the company name begins with a character “R” and last stock value is 8,xx
 
@@ -929,29 +932,49 @@ Output should be:
 Rautaruukki  Corporation :RTRKS: +0,24% 8,46 8,50 8,52 8,42
 Rocla Oyj :ROC1V: -0,60% 8,20 8,25 8,25 8,20 8,25
 ```
+> ![starting with R](pictures/54-starting-with-R.png)
 
 - List all companies except the names starting with characters “R” or “W”
+> ![No starting with R or W](pictures/54-no-RW.png)
+
 - List only those stocks which have positive change value (i.e. +xx,xx%) in the list
+> ![positive](pictures/54-positive.png)
 
-55. Get nimipaivat.txt (Finnish name days) textfile from here nimipaivat.txt
+## 55. Get nimipaivat.txt (Finnish name days) textfile from here [nimipaivat.txt](https://tl.oamk.fi/cdos/dl/nimipaivat.txt)
 - From nimipaivat.txt, find out how many names start with a letter A and end to a letter i?
-- How can you convert previous names to lower-case?
-- From previous names, who are celebrating in December?
-- From all names in nimipaivat.txt, search those who celebrate either 1st, 2nd or 3rd day in any month.
+> As regex is case sensitive, we find those that start with `A` and ends with `i ` (notice the space after) and then count the lines in output with `wc -l`
+> ![A to i](pictures/55-starts-A-ends-with-i.png)
 
-56. Use lynx -dump “url” to print webpage to STDOUT
+- How can you convert previous names to lower-case?
+> We use `tr` to change uppercase to lowercase
+> 
+> ![to lower case](pictures/55-to-lower.png)
+
+- From previous names, who are celebrating in December?
+>![december](pictures/55-december.png)
+
+- From all names in nimipaivat.txt, search those who celebrate either 1st, 2nd or 3rd day in any month.
+> As I put space before `[123]\.` we can be sure it doesn't match on months.
+> 
+> ![nameday at 1st, 2nd or 3rd](pictures/55-at-123.png)
+
+## 56.  Use lynx -dump “url” to print webpage to STDOUT
 - Filter output so that you will get only the current Lotto numbers, but nothing else from the webpage
 - Lotto numbers are available here: https://yle.fi/tekstitv/txt/471_0001.htm
+> Using `grep` to find correct line and `awk` to filter for numbers
+>
+> ![lotto numbers](pictures/56-lotto.png)
 
-57. HTTP access to XML:
+## 57. HTTP access to XML:
 - Use Gnu tools or Cmder's Curl and Grep (and maybe other command line tools) to create a one-liner, which downloads the XML file and parses current temperature from FMI's weather station. One-liner must print only the current temperature in Oulu and nothing else. Command line one-liner and output should look something like this:
 
 ```
 curl -s -L 'https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::observations::weather::timevaluepair&place=oulu&timestep=10&parameters=temperature' |  _replace_with_your_commands_options_and_code_
     12.3
 ```
+> SKIP
 
-58. Combine these two files to a single file with command line Gnu text tools
+## 58. Combine these two files to a single file with command line Gnu text tools
 - The first file has timestamps and the second file has IP addresses
 - Use : as delimeter between columns. Output should look something like this:
 
@@ -964,14 +987,13 @@ curl -s -L 'https://opendata.fmi.fi/wfs?request=getFeature&storedquery_id=fmi::o
     Sat Apr 11 11:05:00 2020:94.102.52.57
     ...
 ```
+> SKIP
 
 
-
-# Week 5
-
+# Week 5 3/6
 
 
-59. Study this Telegram bot game version 0.1, this improved version 0.2 and even more improved version 0.3
+## 59. Study this [Telegram bot game version 0.1](https://tl.oamk.fi/cdos/dl/telegram_wordgame.txt), this [improved version 0.2](https://tl.oamk.fi/cdos/dl/telegram_wordgame_v2.txt) and even more [improved version 0.3](https://tl.oamk.fi/cdos/dl/telegram_wordgame_v3.txt)
 - Compare all three scripts
 - Download the 3rd script (version 0.3) and related word list files (Github addresses are listed in the beginning of the script) with wget and run the script
 - Modify the script to output all characters UPPER CASE
@@ -993,8 +1015,23 @@ Output should look like this (that 11 is the word length):
     10 ABNORM_LITY
     11 ABNORMALITY
 ```
+> Changes denoted with comments
+> ```sh
+> word=($(cat mostly* | tr 'A-Z' 'a-z' | egrep "^[a-z]{$1}$" | shuf | head -1 | fold -w1))
+> linenumber=1 # Added variable line number
+> finalword=(_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _)
+> 
+> for i in $(seq 0 $(($1-1)) | shuf); do
+> 
+> 	finalword[$i]=${word[$i]}	
+> 	reveal=$(echo ${finalword[@]} | sed 's/ //g' | cut -c1-$1)
+>    
+> 	echo "$(printf "%02d" "$linenumber")" ${reveal^^}  # printf for formatting, using ^^ to capitalize
+>    linenumber=$((linenumber + 1)) # increment line number
+> done
+> ```
 
-60. Study and try this simple incremental / full backup example script. Do automatic backups as a root user:
+## 60. Study and try this simple incremental / full backup example script. Do automatic backups as a root user:
 - Use wget to download the backup script example
 - Move the downloaded file to /etc/cron.daily/ and rename it to backup (cron does not like if filename end to .bash. leave it out)
 - Set permissions to 700 (and make sure root user is the file owner)
@@ -1005,13 +1042,42 @@ Output should look like this (that 11 is the word length):
 - Use tar to decompress package and check that you managed to extract all the files from the package
 - Remember that your virtual server host server is not taking any backups. It is up to you to backup and transfer your files if servers go down!
 - Test how to pipe tar archived and compressed file through ssh connection to the students.oamk.fi server (students.oamk.fi accepts your student.oamk.fi credentials for SSH)
+> skip
 
-61. Create a file size comparison Bash script:
+## 61. Create a file size comparison Bash script:
 - It will prompt user to enter two filenames and then compares if the first given file is smaller, greater or equal size to the second file
 - Before comparison, the script must check if given files exist
 - If the file does not exist, script will print an error message
 - Use Bash if expressions to check that file exists and to test which file was larger
 - Use “read” to ask filenames interactively
+
+> ```sh
+> #!/bin/bash
+> 
+> echo "Enter name of first file:"
+> read file1
+> 
+> echo "Enter name of second file:"
+> read file2
+> 
+> if test -f "$file1" && test -f "$file2"; then
+>    
+>    size1=$(stat -c%s $file1)
+>    size2=$(stat -c%s $file2)
+> 
+>    if [ "$size2" -lt "$size1" ]; then
+>       echo "File: ${file1} is bigger"
+>    elif [ "$size1" -lt "$size2" ]; then
+>       echo "File: ${file2} is bigger"
+>    else
+>       echo "Files are same sized!"
+>    fi
+> else
+>    echo "ERROR: One or more files doesn't exist!"
+> fi
+> 
+> ```
+> ![compare](pictures/61-compare.png)
 
 Example output:
 ```
@@ -1024,16 +1090,41 @@ Example output:
 
     File something is larger.
 ```
-62. Change previous script to accept two filenames as a command line parameters. Example output should be something like this:
+
+## 62.  Change previous script to accept two filenames as a command line parameters. Example output should be something like this:
 ```
     $ comparemyfiles something thisfiletoo
     File something is larger.
 ```
 - Also, script must print an error message and exit if it does not receive two parameters (the filenames) from command line
+> ```sh
+> #!/bin/bash
+> 
+> file1="$1"
+> file2="$2"
+> 
+> if test -f "$file1" && test -f "$file2"; then
+>    
+>    size1=$(stat -c%s $file1)
+>    size2=$(stat -c%s $file2)
+> 
+>    if [ "$size2" -lt "$size1" ]; then
+>       echo "File: ${file1} is bigger"
+>    elif [ "$size1" -lt "$size2" ]; then
+>       echo "File: ${file2} is bigger"
+>    else
+>       echo "Files are same sized!"
+>    fi
+> else
+>    echo "ERROR: One or more files doesn't exist!"
+> fi
+> ```
+> ![comparator 2000](pictures/62-compare-v2.png)
 
-63. Think why second solution (to use parameters after the command instead of interactive input) is usually more practical solution?
+## 63. Think why second solution (to use parameters after the command instead of interactive input) is usually more practical solution?
+> 
 
-64. Create “Rock Scissor Paper”-game with Bash
+## 64.  Create “Rock Scissor Paper”-game with Bash
 - Script will prompt user to pick either Rock, Scissors or Paper
 - Script will randomise one option (computer player’s selection) and return results
 - Rules are: Rock wins scissors. Paper wins rock. Scissors wins paper
