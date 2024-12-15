@@ -2,6 +2,7 @@
 
 This diary can be read [here](https://aperamaki.github.io/linux-diary/)
 Total done 53,5/82 = 65%
+finalfinalv2
 
 # Week 1 done 16/17
 
@@ -564,11 +565,17 @@ systemctl
 - ps, pgrep, pstree, pidof
    > `ps` will print out running processes, with flag `-e` displays all processes.
    > `pgrep` enables grep like search of processes, returns process ids:
+   >
    > ![pgrep](pictures/34-pgrep.png)
+   >
    > `pstree` displays processes in tree format grouping them visually.
+   >
    > ![pstree](pictures/34-pstree.png)
+   >
    > `pidof` gives process ids for a program.
+   >
    > ![pidof](pictures/34-pidof.png)
+
 - jobs, disown
 > `jobs` lists currently running background tasks. Tasks are sent to background by starting them normally and appending `&` to starting command. Alternative is to suspend execution with `Ctrl + Z` and then send it to background with `bg` command.
 > `disown` removes process from terminal's list of process. This means, that process's execution is not halted even if terminal is shut down.
