@@ -712,14 +712,30 @@ Assignments to the learning diary (You can do these in small groups. Learning di
 
 ## 42. Study and explain shortly following commands and concepts:
 - cat, tac
+> `cat` prints out file contentes to standard output. `tac` prints lines in reverse order.
 - grep / egrep
+> `grep` finds lines  that match given expression or expressions. It provides multiple options for easy pattern matches like `-i` for case-insensitive, `-v` for inverted matching, `-w` for word matching and `-x` to match full lines. Matching expressions can be given as parameter or in a file with `-f <filename>` where each line is interpeted as separate expression. With `-e` it can be used with extended regexp (regular expression). `egrep` uses that as a default.
 - wc
+> Prints out line, word and byte count of a file. If no file given, it reads standard output.
+> ![word count](pictures/42-wc.png)
 - sort
+> Sorts file or files (or standard input if not given) content in alphabetical order. Has multiple options to modify sorting, including using month sorthands (_JAN_, _DEC_) in their chronological order rather than alphabetical.
+> 
+> ![sort](pictures/42-sort.png)
 - cut
+> Can be used to cut files or standard output bytes, byte ranges or by delimited fields. Below delimited with space (` `) and selected fields 7 and 8 (`-f7,8`). `grep` is used to remove starting and ending lines.
+> ![cut](pictures/42-cut.png)
 - awk
+> Awk is specialized programming language for data manipulation. It reads lines and separates it to fields which can then be used to match and perform actions on those lines.
+> ![awk](pictures/42-awk.png)
 - sed
+> `sed` modifies streams of text in one pass. It is less versitile but more performant. Below I change all `=` characters with `:`.
+> ![sed](pictures/42-sed.png)
 - tr
+> `tr` can be used to change characters or patterns in file or output to another. Simple examples are such as changing lower case letters to upper case with `tr [:lower:] [:upper]` or changing all numbers to `x`
+> ![tr](pictures/42-tr.png)
 - expand, unexpand
+> TODO
 - uniq
 - head
 - tail
@@ -731,12 +747,17 @@ Assignments to the learning diary (You can do these in small groups. Learning di
 - tee
 - nl
 
-43. Use word counter and piping to count how many files or directories are in /usr/bin -directory?
+## 43. Use word counter and piping to count how many files or directories are in /usr/bin -directory?
+> we can use `ls -l` or `ls -la` (to include hidden files and folders) and piping it to `wc -l` to count lines. As `ls -l` lists all files and folders on their own lines it works to count files and folders.
+> ![file count](pictures/43-file-count.png)
 
-44. Use grep and extended regular expression syntax to list all files from /etc directory recursively which have IPv4 addresses mentioned inside
+## 44. Use grep and extended regular expression syntax to list all files from /etc directory recursively which have IPv4 addresses mentioned inside
+> `-E` enables extended regular expression, `-l` lists only file paths and not matched lines, `-r` enables recursive search of files.
+> ![finding ipv4](pictures/44-find-ipv4.png)
 
-45. Download and extract Tetris game source file nct-1.4.tar.gz and
+## 45. Download and extract Tetris game source file [nct-1.4.tar.gz](https://tl.oamk.fi/cdos/dl/nct-1.4.tar.gz) and
 - Use grep to find which files contain string ncurses.h
+> ![grep ncurses](pictures/45-grep-ncurses.h.png)
 - Use wc command to list line counts of each file and sort the output from longest to shortest file. Use data filtering command to remove the total amount of lines line in the beginning of sort output. Final result should be something like this:
 ```sh
       2139 configure
@@ -762,11 +783,19 @@ Assignments to the learning diary (You can do these in small groups. Learning di
       2 acconfig.h
       1 stamp-h.in
 ```
-46. Use wget to download this irclog.txt and answers to these questions:
+> ![line count](pictures/45-find-linecounts.png)
+
+## 46. Use wget to download this [irclog.txt](https://tl.oamk.fi/cdos/dl/irclog.txt) and answers to these questions:
 - How many lines are in the file?
 - How many characters are in the file?
+> `wc -l` for line count and `wc -c` for character count:
+> ![line and word counts](pictures/46-irc-word-count.png)
 - List only lines where the timestamp starts with 05 and save the output to a file called result.txt
+> Filtered with `awk`. Used `head` and `tail` to show beginning and end.
+> ![filtered](pictures/46-only-zero-five.png)
 - Print result.txt in reverse order
+> This printing is huuuuge, so only command provided.
+> ```tac result.txt```
 - Create numerical statistics from the irclog.txt file: How many lines each nickname wrote. Use only those lines where someone actually said something and ignore the all other lines. Output should be something like this:
 ```sh
      44  ryan_
@@ -791,11 +820,24 @@ Assignments to the learning diary (You can do these in small groups. Learning di
       1  d-b
       1  akerl
 ```
-47. List only 5 largest files from /usr/bin -directory.
+> For ease of reading, I put awk code into file:
+> ```awk
+> # count_messages.awk
+> BEGIN { FS = "[<>]" }              # Use < and > to separators
+> /< .*?>/ { users[$2]++ }           # Only use accounts inside < > that is used to increment number in index of username
+> END {                              # This is ran after file is read
+>     for (user in users) {          
+>         print users[user], user    # Print the username and count
+>     }
+> }
+> ```
+> ![message count](pictures/46-user-counts.png)
+
+## 47. List only 5 largest files from /usr/bin -directory.
         Print largest files first
         Try to not use the ls command's -S option but use use sort command (and related text processing commands if necessary)
 
-48. Print only usernames, UID and GID numbers from /etc/passwd -file. Replace all colons with a whitespace. Redirect output to file a “users.txt” in your home directory. Tip: In this example line from /etc/passwd the UID = 101 and GID = 50:
+2.  Print only usernames, UID and GID numbers from /etc/passwd -file. Replace all colons with a whitespace. Redirect output to file a “users.txt” in your home directory. Tip: In this example line from /etc/passwd the UID = 101 and GID = 50:
 
 ```sh
 username:x:101:50:Teemu Korpela:/home/tkorpela:/bin/bash
